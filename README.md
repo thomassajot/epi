@@ -1,8 +1,13 @@
 # My Todos
 
 - [ ] Divide and Conquer examples
-- [ ] DP exercises
+- [x] DP exercises (Finished for Now)
   - **TODO**: Too hard: 16.6 Knapsack variante with thieves getting the same number of item.
+- [ ] 24.32 exercise
+Do again: 
+- Hash Continuous
+- partition function in sort
+- read/black trees
 
 # EPI Judge
 

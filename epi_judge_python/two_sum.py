@@ -4,7 +4,12 @@ from test_framework import generic_test
 
 
 def has_two_sum(A: List[int], t: int) -> bool:
-    """Input is assumed sorted"""
+    """
+    Input is assumed sorted
+    Complexity:
+    >> Time: O(n)
+    >> Space: O(1)
+    """
     i, j = 0, len(A) - 1
     while i <= j:
         if A[i] + A[j] == t:

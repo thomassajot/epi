@@ -5,6 +5,11 @@ from test_framework import generic_test
 
 
 def has_three_sum(A: List[int], t: int) -> bool:
+    """
+    Complexity:
+    >> Time: O(n^2)
+    >> Space: O(1)
+    """
     A.sort()
     return any(has_two_sum(A, t - a) for a in A)
 

@@ -12,10 +12,60 @@ WHITE, BLACK = range(2)
 Coordinate = collections.namedtuple('Coordinate', ('x', 'y'))
 
 
-def search_maze(maze: List[List[int]], s: Coordinate,
-                e: Coordinate) -> List[Coordinate]:
-    # TODO - you fill in here.
-    return []
+def search_maze_perso(maze: List[List[int]], s: Coordinate,
+                      e: Coordinate) -> List[Coordinate]:
+    def build_graph():
+        graph = collections.defaultdict(set)
+        for col in range(len(maze)):
+            for row in range(len(maze[0])):
+                if maze[col][row] == BLACK:
+                    continue
+                for i, j in (1, 0), (-1, 0), (0, 1), (0, -1):
+                    if 0 <= col + i < len(maze) and 0 <= row + j < len(maze[0]) and maze[col + i][row + j] != BLACK:
+                        graph[Coordinate(col, row)].add(Coordinate(col + i, row + j))
+        return graph
+
+    def dfs(graph, curr, target, visited=set()):
+        if curr == target:
+            return [target]
+
+        if curr in visited:
+            return []
+
+        visited.add(curr)
+        for next_curr in graph[curr]:
+            path = dfs(graph, next_curr, target)
+            if len(path) != 0:
+                break
+        else:
+            return []
+        return [curr] + path
+
+    return dfs(build_graph(), s, e)
+
+
+def search_maze(maze: List[List[int]], s: Coordinate, e: Coordinate) -> List[Coordinate]:
+    def search_dfs(curr: Coordinate):
+        if not (0 <= curr.x < len(maze)
+                and 0 <= curr.y < len(maze[curr.x])
+                and maze[curr.x][curr.y] == WHITE):
+            return False
+
+        path.append(curr)
+        maze[curr.x][curr.y] = BLACK
+
+        if curr == e:
+            return True
+
+        if any(search_dfs(Coordinate(curr.x + x, curr.y + y)) for x, y in [(1, 0), (-1, 0), (0, 1), (0, -1)]):
+            return True
+
+        del path[-1]
+        return False
+
+    path = []
+    search_dfs(s)
+    return path
 
 
 def path_element_is_feasible(maze, prev, cur):
@@ -50,6 +100,14 @@ def search_maze_wrapper(executor, maze, s, e):
 
 
 if __name__ == '__main__':
+    maze = [[0, 1, 0, 1, 0], [0, 0, 0, 1, 0], [0, 1, 1, 0, 1], [1, 0, 0, 0, 0], [1, 0, 0, 1, 1], [0, 0, 0, 0, 0],
+            [1, 0, 0, 1, 0], [0, 0, 0, 0, 0], [1, 0, 1, 0, 0], [0, 1, 0, 0, 0], [0, 0, 0, 1, 1], [0, 0, 0, 1, 0],
+            [0, 0, 0, 1, 0], [1, 0, 0, 0, 0], [0, 1, 0, 0, 0], [0, 0, 0, 1, 0], [1, 0, 0, 1, 0], [1, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 1, 1, 0, 0], [0, 0, 0, 0, 1], [0, 0, 0, 0, 1], [0, 0, 0, 0, 0],
+            [0, 0, 0, 1, 1]]
+    s = Coordinate(8, 3)
+    e = Coordinate(17, 1)
+    print(search_maze(maze, s, e))
     exit(
         generic_test.generic_test_main('search_maze.py', 'search_maze.tsv',
                                        search_maze_wrapper))
