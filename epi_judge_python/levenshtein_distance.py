@@ -107,11 +107,6 @@ def variant_is_interleaving(s1, s2, t) -> bool:
 
 
 if __name__ == '__main__':
-    print(variant_longest_common_subsequence('Carthorse', 'Orchestra'))
-    print(variant_distance_to_palindrome('Carthorse'))
-    print(variant_distance_to_palindrome('kayaka'))
-    print('=' * 40)
-    print('=' * 40)
     exit(
         generic_test.generic_test_main('levenshtein_distance.py',
                                        'levenshtein_distance.tsv',

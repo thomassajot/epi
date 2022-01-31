@@ -2138,7 +2138,7 @@ problem_mapping = {
                 "total": 1001
             },
             "Python: fibonacci.py": {
-                "passed": 0,
+                "passed": 46,
                 "total": 46
             },
             "Python: max_sum_subarray.py": {
@@ -2170,7 +2170,7 @@ problem_mapping = {
                 "total": 100
             },
             "Python: levenshtein_distance.py": {
-                "passed": 102,
+                "passed": 100,
                 "total": 100
             }
         },
@@ -2296,7 +2296,7 @@ problem_mapping = {
                 "total": 102
             },
             "Python: pretty_printing.py": {
-                "passed": 0,
+                "passed": 102,
                 "total": 102
             }
         },
@@ -2310,7 +2310,7 @@ problem_mapping = {
                 "total": 200
             },
             "Python: longest_nondecreasing_subsequence.py": {
-                "passed": 0,
+                "passed": 200,
                 "total": 200
             }
         }

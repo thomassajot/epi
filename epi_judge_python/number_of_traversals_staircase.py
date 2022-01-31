@@ -4,6 +4,9 @@ from test_framework import generic_test
 
 
 def number_of_ways_to_top(top: int, maximum_step: int) -> int:
+    # k = number of steps, n = top
+    # Time complexity: O(KN)
+    # Space: O(N)
     @lru_cache(None)
     def calculate(i):
         if i <= 1:
