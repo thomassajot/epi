@@ -60,7 +60,7 @@ def _extract_sub_graph(target: str, graph: Graph) -> Tuple[Graph, Dict[str, int]
 
 
 def _build_execution_sequence(sub_graph, sub_graph_counts) -> List[str]:
-    # Build exeuction sequence from sub-graph
+    # Build execution sequence from sub-graph
     # Time complexity: O(N + K)
     # Space complexity: O(N + K)
     queue = [t for t, n_deps in sub_graph_counts.items() if n_deps == 0]
